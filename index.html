@@ -1,11 +1,34 @@
-<object
-  data="Ethan-Towers-CV.pdf"
-  type="application/pdf"
-  width="100%"
-  height="100%"
->
-  <p>
-    Your browser does not support PDFs. 
-    <a href="Ethan-Towers-CV.pdf" download>Download the PDF</a>.
-  </p>
-</object>
+<div id="cv-container" style="width:100%; max-width:900px; margin:auto;">
+    <!-- Embedded CV -->
+    <iframe 
+        id="cv-frame"
+        src="Ethan-Towers-CV.pdf"
+        width="100%"
+        height="900px"
+        style="border:none;">
+    </iframe>
+
+    <!-- Fallback Button -->
+    <div id="cv-fallback" style="display:none; text-align:center; margin-top:20px;">
+        <p>Your browser couldn't display the CV.</p>
+        <a href="Ethan-Towers-CV.pdf" download>
+            <button style="padding:10px 20px; font-size:16px; cursor:pointer;">
+                Download CV (PDF)
+            </button>
+        </a>
+    </div>
+</div>
+
+<script>
+    setTimeout(() => {
+        const iframe = document.getElementById('cv-frame');
+        const fallback = document.getElementById('cv-fallback');
+        try {
+            if (!iframe.contentDocument || iframe.contentDocument.body.childElementCount === 0) {
+                fallback.style.display = "block";
+            }
+        } catch (err) {
+          fallback.style.display = "block";
+        }
+    }, 800); 
+</script>
